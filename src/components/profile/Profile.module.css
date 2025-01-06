@@ -1,0 +1,48 @@
+.profile-card {
+  background-color: rgb(238, 238, 238);
+  border: 2px solid black;
+  border-radius: 15px;
+  padding-top: 25px;
+  width: 500px;
+  margin: auto;
+  margin-bottom: 50px;
+}
+.user {
+  margin-bottom: 15px;
+}
+.foto {
+  margin: 0 auto;
+  width: 150px;
+  background-color: rgb(44, 44, 44);
+  border-radius: 50%;
+  margin-bottom: 20px;
+}
+.name {
+  font-size: 40px;
+  font-weight: bold;
+}
+.info {
+  font-size: 30px;
+  color: rgb(138, 138, 138);
+}
+.statictic-list {
+  display: flex;
+  justify-content: center;
+  border-top: 2px solid rgb(138, 138, 138);
+}
+.statictic-item {
+  display: flex;
+  flex-direction: column;
+  border-right: 2px solid rgb(138, 138, 138);
+  padding: 20px 40px;
+}
+.statictic-item:last-child {
+  border: none;
+}
+.statictic-title {
+  font-size: 25px;
+}
+.statictic-data {
+  font-size: 35px;
+  font-weight: bold;
+}
