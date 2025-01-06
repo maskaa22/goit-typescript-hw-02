@@ -1,0 +1,12 @@
+.table-col,
+.table-col-first {
+  border: 2px solid rgb(43, 43, 43);
+}
+.table-col,
+.table-col-first {
+  padding: 5px 55px;
+}
+.table-col-first {
+  text-transform: capitalize;
+  text-align: left;
+}

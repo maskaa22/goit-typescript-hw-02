@@ -8,17 +8,3 @@
   border-radius: 5px;
   padding: 10px;
 }
-.avatar {
-  width: 80px;
-  margin: auto;
-  margin-bottom: 15px;
-}
-.name {
-  font-size: 25px;
-}
-.online {
-  color: green;
-}
-.offline {
-  color: red;
-}

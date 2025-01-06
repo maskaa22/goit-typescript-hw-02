@@ -4,22 +4,14 @@
   margin: auto;
 }
 .table,
-.table-row .table-col,
-.table-col-first {
+.table-row {
   border: 2px solid rgb(43, 43, 43);
 }
 .table-head {
   background-color: black;
   color: white;
 }
-.table-col,
-.table-col-first {
-  padding: 5px 55px;
-}
-.table-col-first {
-  text-transform: capitalize;
-  text-align: left;
-}
+
 .table-row:nth-child(even) {
   background-color: rgb(209, 209, 209);
 }

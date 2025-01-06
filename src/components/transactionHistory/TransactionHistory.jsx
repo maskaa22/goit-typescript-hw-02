@@ -1,5 +1,5 @@
 import css from "./TransactionHistory.module.css";
-import TransactionHistoryItem from "./TransactionHistoryItem";
+import TransactionHistoryItem from "../transactionHistoryItem/TransactionHistoryItem";
 
 export default function TransactionHistory({ items: transactions }) {
   return (
