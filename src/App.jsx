@@ -1,69 +1,48 @@
 import { useState, useEffect } from "react";
 import "./App.css";
-import Description from "./components/description/Description";
-import Options from "./components/options/Options";
-import Feedback from "./components/feedback/Feedback";
-import Notification from "./components/notification/Notification";
+import ContactForm from "./components/contactForm/ContactForm";
+import SearchBox from "./components/searchBox/SearchBox";
+import ContactList from "./components/contactList/ContactList";
+import contacts from "./Contacts.json";
 
 function App() {
-  const [statictic, setStatictic] = useState(() => {
-    const savedObject = window.localStorage.getItem("statictic");
+  const [contactList, setContactList] = useState(() => {
+    const savedObject = window.localStorage.getItem("contacts");
 
     if (savedObject !== null) {
       return JSON.parse(savedObject);
     }
-
-    return {
-      good: 0,
-      neutral: 0,
-      bad: 0,
-    };
+    return contacts;
   });
-
-  const updateFeedback = (feedbackType) => {
-    if (feedbackType === "good") {
-      setStatictic({
-        ...statictic,
-        good: statictic.good + 1,
-      });
-    } else if (feedbackType === "neutral") {
-      setStatictic({
-        ...statictic,
-        neutral: statictic.neutral + 1,
-      });
-    } else if (feedbackType === "bad") {
-      setStatictic({
-        ...statictic,
-        bad: statictic.bad + 1,
-      });
-    } else
-      setStatictic({
-        good: 0,
-        neutral: 0,
-        bad: 0,
-      });
-  };
-
-  const totalFeedback = statictic.good + statictic.neutral + statictic.bad;
-  const positiveFeedback = Math.round((statictic.good / totalFeedback) * 100);
-
+  const [filter, setFilter] = useState("");
   useEffect(() => {
-    window.localStorage.setItem("statictic", JSON.stringify(statictic));
-  }, [statictic]);
+    window.localStorage.setItem("contacts", JSON.stringify(contactList));
+  }, [contactList]);
+
+  const newContacts = contactList.filter((contactItem) =>
+    contactItem.name.toLowerCase().includes(filter.toLowerCase())
+  );
+  const addContact = (newContact) => {
+    setContactList((prevContact) => {
+      const add = [...prevContact, newContact];
+      window.localStorage.setItem("contacts", JSON.stringify(add));
+      return add;
+    });
+  };
+  const delContact = (id) => {
+    setContactList((prevContact) => {
+      const del = prevContact.filter((contact) => contact.id !== id);
+      window.localStorage.setItem("contacts", JSON.stringify(del));
+      return del;
+    });
+  };
 
   return (
     <>
-      <Description />
-      <Options updateFeedback={updateFeedback} totalFeedback={totalFeedback} />
-      {totalFeedback === 0 ? (
-        <Notification />
-      ) : (
-        <Feedback
-          count={statictic}
-          totalFeedback={totalFeedback}
-          positiveFeedback={positiveFeedback}
-        />
-      )}
+      <h1 className="h1-title">Phonebook</h1>
+      <ContactForm addContact={addContact} />
+      <SearchBox filter={filter} setFilter={setFilter} />
+      <ContactList contacts={newContacts} delContact={delContact} />
     </>
   );
 }
