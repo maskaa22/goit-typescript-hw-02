@@ -24,7 +24,7 @@ function App() {
   );
   const addContact = (newContact) => {
     setContactList((prevContact) => {
-      const add = [...prevContact, newContact];
+      const add = [...prevContact, {...newContact, id: Date.now()}];
       window.localStorage.setItem("contacts", JSON.stringify(add));
       return add;
     });

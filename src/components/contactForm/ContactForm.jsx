@@ -9,8 +9,7 @@ export default function ContactForm({ addContact }) {
 
   const initialValues = {
     name: "",
-    number: "",
-    id: Date.now(),
+    number: ""
   };
 
   const handleSubmit = (values, actions) => {
