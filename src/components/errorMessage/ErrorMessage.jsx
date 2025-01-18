@@ -1,10 +1,30 @@
+import { useEffect } from "react";
 
-import c from './LoadMoreBtn.module.css';
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
-export default function ErrorMessage() {
+export default function ErrorMessage({ errorMessage }) {
+  useEffect(() => {
+    toast.error(errorMessage, {
+      position: "top-right",
+      autoClose: 5000,
+      hideProgressBar: false,
+    });
+  }, [errorMessage]);
+
   return (
-    <div>
-
-    </div>
+    <>
+      <ToastContainer
+        position="top-right"
+        autoClose={5000}
+        hideProgressBar={false}
+        newestOnTop={true}
+        closeOnClick
+        rtl={false}
+        pauseOnFocusLoss
+        draggable
+        pauseOnHover
+      />
+    </>
   );
 }
