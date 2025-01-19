@@ -1,7 +1,6 @@
-
 .img {
-
-    width: 400px;
-    object-fit: cover;
-    height: 200px;
+  width: 400px;
+  object-fit: cover;
+  height: 200px;
+  cursor: pointer;
 }

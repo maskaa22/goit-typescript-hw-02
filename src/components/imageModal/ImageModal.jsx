@@ -1,10 +1,43 @@
+import Modal from "react-modal";
+import c from "./ImageModal.module.css";
 
-import c from './LoadMoreBtn.module.css';
+export default function ImageModal({
+  isOpen,
+  closeModal,
+  data: { alt, url, likes, username },
+}) {
+  const customStyles = {
+    overlay: {
+      backgroundColor: "rgb(61 55 55 / 75%)",
+    },
+    content: {
+      width: "80%",
+      // height: '400px',
+      margin: "auto",
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center",
+      padding: 0,
+      borderRadius: "10px",
+      border: "none",
+      overflow: "hidden",
+    },
+  };
 
-export default function ImageModal() {
   return (
-    <div>
-
-    </div>
+    <Modal
+      isOpen={isOpen}
+      onRequestClose={closeModal}
+      style={customStyles}
+      appElement={document.getElementById("root")}
+    >
+      <div className={c.container}>
+        <img src={url} alt={alt} className={c.img} />
+        <div className={c.info}>
+          <p className={c.text}>Author - {username}</p>
+          <p className={c.text}>Likes: {likes}</p>
+        </div>
+      </div>
+    </Modal>
   );
 }
