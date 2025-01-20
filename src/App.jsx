@@ -13,6 +13,7 @@ function App() {
   const [searchWord, setSearchWord] = useState("");
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
+  const [errorSearchFlag, setSearchFlag] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
   const [errorSearchMessage, setErrorSearchMessage] = useState("");
   const [page, setPage] = useState(1);
@@ -35,7 +36,7 @@ function App() {
         setLoading(true);
         const data = await fetchImage(searchWord, page);
         setGalleryList((prev) => [...prev, ...data.results]);
-      } catch (err) {     
+      } catch (err) {
         setError(true);
         setErrorMessage(err.message);
       } finally {
@@ -54,9 +55,19 @@ function App() {
 
   return (
     <>
-      <SearchBar onSubmit={onSubmit} err={setErrorSearchMessage} />
-      {error && <ErrorMessage errorMessage={errorMessage} />}
-      {errorSearchMessage !== "" && <ErrorMessage errorMessage={errorSearchMessage} />}
+      <SearchBar
+        onSubmit={onSubmit}
+        err={setErrorSearchMessage}
+        flag={setSearchFlag}
+      />
+      {error ||
+        (errorSearchFlag && (
+          <ErrorMessage
+            errorMessage={
+              errorSearchMessage !== "" ? errorSearchMessage : errorMessage
+            }
+          />
+        ))}
       {gallaryList.length > 0 && (
         <ImageGallary
           gallaryList={gallaryList}

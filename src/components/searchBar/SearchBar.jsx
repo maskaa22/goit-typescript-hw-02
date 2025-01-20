@@ -1,7 +1,7 @@
 import { CiSearch } from "react-icons/ci";
 import c from "./SearchBar.module.css";
 
-export default function SearchBar({ onSubmit, err }) {
+export default function SearchBar({ onSubmit, err, flag }) {
   const handleSubmit = (e) => {
     e.preventDefault();
     const form = e.target;
@@ -12,6 +12,7 @@ export default function SearchBar({ onSubmit, err }) {
       return;
     }
     onSubmit(search);
+    flag(true);
     form.reset();
   };
   return (
