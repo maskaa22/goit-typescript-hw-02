@@ -1,11 +1,13 @@
 import c from "./ImageGallery.module.css";
 import ImageCard from "../imageCard/ImageCard";
+import { FC } from "react";
+import { ImageGalleryProps } from "../../types";
 
-export default function ImageGallery({
+const ImageGallery: FC<ImageGalleryProps> = ({
   gallaryList,
   openModal,
   setDataForModal,
-}) {
+}) => {
   return (
     <ul className={c.list}>
       {gallaryList.map((item) => (
@@ -19,4 +21,5 @@ export default function ImageGallery({
       ))}
     </ul>
   );
-}
+};
+export default ImageGallery;

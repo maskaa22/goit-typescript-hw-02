@@ -1,11 +1,13 @@
 import Modal from "react-modal";
 import c from "./ImageModal.module.css";
+import { FC } from "react";
+import { ImageModalProps } from "../../types";
 
-export default function ImageModal({
+const ImageModal: FC<ImageModalProps> = ({
   isOpen,
   closeModal,
   data: { alt, url, likes, username },
-}) {
+}) => {
   const customStyles = {
     overlay: {
       backgroundColor: "rgb(61 55 55 / 75%)",
@@ -29,7 +31,7 @@ export default function ImageModal({
       isOpen={isOpen}
       onRequestClose={closeModal}
       style={customStyles}
-      appElement={document.getElementById("root")}
+      appElement={document.getElementById("root") as HTMLElement}
     >
       <div className={c.container}>
         <img src={url} alt={alt} className={c.img} />
@@ -40,4 +42,6 @@ export default function ImageModal({
       </div>
     </Modal>
   );
-}
+};
+
+export default ImageModal;

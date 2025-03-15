@@ -1,13 +1,22 @@
 import { CiSearch } from "react-icons/ci";
 import c from "./SearchBar.module.css";
+import { FC, FormEvent } from "react";
 
-export default function SearchBar({ onSubmit, err, flag }) {
-  const handleSubmit = (e) => {
+interface SearchBarProps {
+  onSubmit: (word: string) => void;
+  err: (massage: string) => void;
+  flag: (status: boolean) => void;
+}
+
+const SearchBar: FC<SearchBarProps> = ({ onSubmit, err, flag }) => {
+  const handleSubmit = (e: FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    const form = e.target;
+    const form = e.target as HTMLFormElement;
 
-    const search = form.elements.search.value;
-    if (form.elements.search.value.trim() === "") {
+    const search = (form.elements.namedItem("search") as HTMLInputElement)
+      .value;
+    // search.value;
+    if (search.trim() === "") {
       err("Please enter search term!");
       return;
     }
@@ -32,4 +41,6 @@ export default function SearchBar({ onSubmit, err, flag }) {
       </form>
     </header>
   );
-}
+};
+
+export default SearchBar;

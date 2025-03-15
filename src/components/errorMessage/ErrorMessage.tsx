@@ -1,9 +1,13 @@
-import { useEffect } from "react";
+import { FC, useEffect } from "react";
 
 import { ToastContainer, toast } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 
-export default function ErrorMessage({ errorMessage }) {
+interface ErrorMessageProps {
+  errorMessage: string;
+}
+
+const ErrorMessage: FC<ErrorMessageProps> = ({ errorMessage }) => {
   useEffect(() => {
     toast.error(errorMessage, {
       position: "top-right",
@@ -27,4 +31,5 @@ export default function ErrorMessage({ errorMessage }) {
       />
     </>
   );
-}
+};
+export default ErrorMessage;
